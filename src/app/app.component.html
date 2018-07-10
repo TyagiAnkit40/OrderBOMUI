@@ -1,0 +1,50 @@
+<div>
+  <h4>Order BOM Search</h4>
+</div>
+<div class="filterRow">
+  <div>
+    <label for="orderNumber">Order#:</label>
+    <input type="text" [(ngModel)]="orderNumber" name="orderNumber" placeholder="Enter Order#">
+    <label for="component">Component:</label>
+    <input type="text" [(ngModel)]="component" name="component" placeholder="Enter Component">
+    <label for="orderpart">Order Part:</label> 
+    <input type="text" [(ngModel)]="orderPart" name="orderpart" placeholder="Enter Order Part">
+    <input type="submit" value="Search" (click)="filterRecords()">
+    <input type="submit" value="Clear" (click)="clearFilters()" class="clear">
+  </div>
+</div>
+
+<div *ngIf="results$ | async; let results;">
+  <ul>
+    <table>
+      <tr class="tableHeader">
+        <th>Entity Code</th>
+        <th>Order#</th> 
+        <th>Line No</th>
+        <th>Parent Part</th>
+        <th>Component</th>
+        <th>Comp Qty</th>
+        <th>Order Part</th>
+        <th>Final Part</th>
+        <th>Final Assy</th>
+        <th>Prod Date</th>
+        <th>Order Status</th>
+      </tr>
+      
+      <tr *ngFor="let result of results">
+        <td>{{ result.inEntity }}</td>
+        <td>{{  result.orderNo }}</td>
+        <td>{{  result.lineNo }}</td>
+        <td>{{  result.parentPart }}</td>
+        <td>{{  result.component }}</td>
+        <td>{{  result.compQty }}</td>
+        <td>{{  result.orderPart }}</td>
+        <td>{{  result.finalPart }}</td>
+        <td>{{  result.finalAssy }}</td>
+        <td>{{  result.prodDate }}</td>
+        <td>{{  result.orderStatus }}</td>
+      </tr>
+    </table>
+  </ul>
+  
+</div>
